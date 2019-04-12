@@ -10,17 +10,30 @@
             <br>
             <input type="password" id="passField">
             <br>
-            <button v-on:click="authenticate">Login</button>
+            <button v-on:click="authenticate()">Login</button>
         </div>
 
     </div>
 </template>
 
 <script>
+//import auth from "firebase/auth"
+
 export default {
     name: 'signIn',
     data(){
         return{}
+    },
+    methods:{
+        authenticate(){
+            
+            //TODO: authenticate
+
+            //move to next home page
+            this.$router.push({
+                name: 'Home'
+            });
+        }
     }
 }
 
