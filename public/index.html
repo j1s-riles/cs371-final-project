@@ -5,11 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>movie-project</title>
+    <title>Wow, Movies</title>
+    <!-- Firebase Stuff -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyD_CuPg8WF-MwXXXMVx20jz5TV10B-DPRU",
+        authDomain: "cis371movieproject.firebaseapp.com",
+        databaseURL: "https://cis371movieproject.firebaseio.com",
+        projectId: "cis371movieproject",
+        storageBucket: "cis371movieproject.appspot.com",
+        messagingSenderId: "657681348776"
+    };
+    firebase.initializeApp(config);
+    </script>
   </head>
+
   <body>
     <noscript>
-      <strong>We're sorry but movie-project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>We're sorry but Wow, Movies! doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
