@@ -1,6 +1,6 @@
 <template>
     <div id="top">
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <div id="loginForm">
             <label for="usernameField">Email:</label>
             <br>
@@ -10,7 +10,10 @@
             <br>
             <input type="password" id="passField">
             <br>
-            <button v-on:click="authenticate()">Login</button>
+            <label for="passField">Confirm:</label>
+            <br>
+            <input type="password" id="passConfirm">
+            <br>
             <button v-on:click="signUp()">Sign Up</button>
         </div>
 
@@ -18,31 +21,22 @@
 </template>
 
 <script>
-//import auth from "firebase/auth"
-
 export default {
-    name: 'signIn',
+    name: 'SignUp',
     data(){
         return{}
     },
     methods:{
-        authenticate(){
-            
-            //TODO: authenticate
-
-            //move to next home page
-            this.$router.push({
-                name: 'Home'
-            });
-        },
-
         signUp(){
+            
+
+            //Go back to sign in page when complete
             this.$router.push({
-                name: 'SignUp'
-            });
+                name: 'SignIn'
+            })
         }
     }
 }
-
 </script>
+
 
