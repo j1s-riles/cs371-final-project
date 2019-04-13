@@ -4,11 +4,11 @@
         <div id="loginForm">
             <label for="usernameField">Email:</label>
             <br>
-            <input type="email" id="usernameField">
+            <input type="email" v-model="email" id="usernameField">
             <br>
             <label for="passField">Password:</label>
             <br>
-            <input type="password" id="passField">
+            <input type="password" v-model="password" id="passField">
             <br>
             <button v-on:click="authenticate()">Login</button>
             <button v-on:click="signUp()">Sign Up</button>
@@ -23,17 +23,33 @@ import firebase from 'firebase'
 export default {
     name: 'signIn',
     data(){
-        return{}
+        return{
+            email: "",
+            password: ""
+        }
     },
     methods:{
         authenticate(){
+            //"this" has different reference in firebase function
+            //so we need to create our own instance of it
+            let self = this;
             
             //TODO: authenticate
+            if(this.email === "" || this.password === ""){
+                alert("Please fill in all fields! 😬");
+            }
 
-            //move to next home page
-            this.$router.push({
-                name: 'Home'
-            });
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+                .then(function(user){
+                    //move to next home page
+                    self.$router.push({
+                        name: 'home'
+                    });
+                })
+                .catch(function(err){
+                    alert("Oops. " + err.message);
+                });
+            
         },
 
         signUp(){
