@@ -2,9 +2,13 @@
     <div id="top">
         <h1>Sign Up</h1>
         <div id="loginForm">
-            <label for="usernameField">Email:</label>
+            <label for="emailField">Email:</label>
             <br>
-            <input type="email" id="usernameField" v-model="email" placeholder="Email">
+            <input type="email" id="emailField" v-model="email" placeholder="Email">
+            <br>
+            <label for="nameField">Name:</label>
+            <br>
+            <input type="text" id="nameField" v-model="name" placeholder="Name">
             <br>
             <label for="passField">Password:</label>
             <br>
@@ -28,6 +32,7 @@ export default {
     data(){
         return{
             email: '',
+            name: '',
             password: '',
             passConfirm: ''
         }
@@ -37,7 +42,7 @@ export default {
             let self = this;
 
             //Ensure fields are not blank
-            if(this.email === "" || this.password === "" || this.passConfirm === ""){
+            if(this.email === "" || this.password === "" || this.passConfirm === "" || this.name === ""){
                 alert("Please fill in all fields! 😬");
                 return;
             }
@@ -49,15 +54,27 @@ export default {
             }
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
             .then(
+                //success
                 function(user){
-                    //alert("Account has been created! 😁");
                     
+                    //set up database
+                    var database = firebase.database();
+                    
+                    //console.log(user.user.uid);
+
+                    database.ref('users/' + user.user.uid).set({
+                        email: self.email,
+                        name: self.name,
+                        reservedMovies: []
+                    });
+
                     //User is automatically logged in on success
                     self.$router.push({
                         name: 'home'
                     });
                 })
             .catch(
+                //an error occurred
                 function(err){
                     alert("Oops. " + err.message);
                 }

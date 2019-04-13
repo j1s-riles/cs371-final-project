@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <button v-on:click="logout()">Logout</button>
+    <header>
+      <img alt="Vue logo" src="../assets/logo.png">
+      <button>Profile</button>
+      <button v-on:click="logout()">Logout</button>
+    </header>
+    
     <CardList></CardList>
   </div>
 </template>
@@ -35,6 +39,3 @@ export default {
   }
 }
 </script>
-
-
-
