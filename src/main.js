@@ -6,7 +6,7 @@ import firebase from 'firebase'
 Vue.config.productionTip = false
 
 var config = {
-  apiKey: "AIzaSyD_CuPg8WF-MwXXXMVx20jz5TV10B-DPRU",
+  apiKey: "",
   authDomain: "cis371movieproject.firebaseapp.com",
   databaseURL: "https://cis371movieproject.firebaseio.com",
   projectId: "cis371movieproject",
