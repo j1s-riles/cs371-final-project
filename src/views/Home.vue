@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <header>
-      <img alt="Vue logo" src="../assets/logo.png">
+      <h2>Welcome, {{userName}}</h2>
+      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
       <button>Profile</button>
       <button v-on:click="logout()">Logout</button>
     </header>
@@ -21,6 +22,11 @@ export default {
   components: {
     CardList
   },
+  data(){
+    return {
+      userName: ""
+    }
+  },
   methods:{
     logout(){
       let self = this;
@@ -36,6 +42,19 @@ export default {
       });
 
     }
+  },
+  created(){
+    var database = firebase.database();
+    var user = firebase.auth().currentUser;
+    let self = this
+
+    database.ref('/users/' + user.uid).once('value').then(function(snapshot){
+      console.log(snapshot.val().name);
+      self.userName = snapshot.val().name;
+    });
+
+
   }
+
 }
 </script>
