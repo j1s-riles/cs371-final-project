@@ -10,6 +10,46 @@
         <MovieCard></MovieCard>
         <MovieCard></MovieCard>
         <MovieCard></MovieCard>
+         <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+         <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+         <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+         <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
+        <MovieCard></MovieCard>
     </div>
 </template>
 
