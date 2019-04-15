@@ -24,7 +24,8 @@ export default {
   },
   data(){
     return {
-      userName: ""
+      userName: "",
+      movieAPIResults: []
     }
   },
   methods:{
@@ -49,11 +50,28 @@ export default {
     let self = this
 
     database.ref('/users/' + user.uid).once('value').then(function(snapshot){
-      console.log(snapshot.val().name);
       self.userName = snapshot.val().name;
     });
 
 
+    //TODO: get list of current movies from API
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=1cca25cee708bb87ee10989f931b5f89&primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-04-30&language=en&sort_by=popularity.desc');
+  
+    request.onload = function() {
+
+      //access JSON data here
+      var data = JSON.parse(this.response);
+
+      data.results.forEach(movie => {
+        self.movieAPIResults.push(movie)
+      });
+    }
+
+    request.send();
+
+    console.log(self.movieAPIResults);
   }
 
 }
