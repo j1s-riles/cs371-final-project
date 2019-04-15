@@ -5,16 +5,11 @@
             <table>
                 <tr>
                     <td>
-                        <img id="moviePoster" src="../assets/placeHolder.jpg" alt="Emperor's New Groove">
+                        <img id="moviePoster" :src="`http://image.tmdb.org/t/p/w185_and_h278_bestv2/${detail.poster_path}`" alt="Movie Poster">
                     </td>  
                     <td id="description">
                         <h4>Overview:</h4>
-                        Kuzco is a self-centered emperor who summons Pacha from a village and to tell him that his home 
-                            will be destroyed to make room for Kuzco's new summer home. 
-                            Kuzco's advisor, Yzma, tries to poison Kuzco and accidentally 
-                            turns him into a llama, who accidentally ends up in Pacha's 
-                            village. Pacha offers to help Kuzco if he doesn't destroy 
-                            his house, and so they form an unlikely partnership.
+                            {{detail.overview}}
                         
                     </td>
                 </tr>
@@ -23,13 +18,19 @@
         
         <p><strong>Seats: 50/50</strong></p>
 
-        <h4>The Emperor's New Groove</h4>
+        <h4>{{detail.title}}</h4>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'MovieCard'
+    name: 'MovieCard',
+    props:{
+        detail:{}
+    },
+    mounted(){
+        console.log(this.detail);
+    }
 }
 </script>
 

@@ -7,7 +7,7 @@
       <button v-on:click="logout()">Logout</button>
     </header>
     
-    <CardList></CardList>
+    <CardList v-bind:movies="{movieAPIResults}"></CardList>
   </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
     });
 
 
-    //TODO: get list of current movies from API
+    //get list of current movies from API
     var request = new XMLHttpRequest();
 
     request.open('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=1cca25cee708bb87ee10989f931b5f89&primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-04-30&language=en&sort_by=popularity.desc');
@@ -65,13 +65,28 @@ export default {
       var data = JSON.parse(this.response);
 
       data.results.forEach(movie => {
+        //put each movie into an array we can use later
         self.movieAPIResults.push(movie)
       });
     }
 
     request.send();
 
-    console.log(self.movieAPIResults);
+    //Checks if movie already in /movies in firebase, if not, adds it
+    database.ref('/movies/').once('value').then(function(snapshot){
+          self.movieAPIResults.forEach(movie =>{
+            if(!snapshot.val()[movie.id]){
+              database.ref("/movies/" + movie.id).set({
+                title: movie.title,
+                id: movie.id,
+                posterPath: movie.poster_path,
+                overview: movie.overview,
+                seats: 50
+              });
+            }
+          });
+    });
+
   }
 
 }
