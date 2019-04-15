@@ -2,23 +2,15 @@
     <div class="card">
 
         <div class="container">
-            <table>
-                <tr>
-                    <td>
-                        <img id="moviePoster" :src="`http://image.tmdb.org/t/p/w185_and_h278_bestv2/${detail.poster_path}`" alt="Movie Poster">
-                    </td>  
-                    <td id="description">
-                        <h4>Overview:</h4>
-                            {{detail.overview}}
-                        
-                    </td>
-                </tr>
-            </table>
+            <h4>{{detail.title}}</h4>
+                <img id="moviePoster" :src="`http://image.tmdb.org/t/p/w185_and_h278_bestv2/${detail.poster_path}`" alt="Movie Poster">
         </div>
-        
+        <div id="description">
+            <h4>Overview:</h4>
+                {{detail.overview}}         
+        </div>
         <p><strong>Seats: 50/50</strong></p>
 
-        <h4>{{detail.title}}</h4>
     </div>
 </template>
 
