@@ -1,6 +1,6 @@
 <template>
     <div class="movies">
-        <template v-for="(movie, pos) in movies.movieAPIResults">
+        <template v-for="(movie, pos) in movies.moviesFromFirebase">
             <MovieCard v-bind:key="pos" v-bind:detail="movie"></MovieCard>
         </template>
     </div>
@@ -21,7 +21,7 @@ export default {
         }
     },
     mounted(){
-        //console.log(this.movies);
+        console.log(this.movies);
     }
 }
 </script>

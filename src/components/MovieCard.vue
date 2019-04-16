@@ -3,13 +3,13 @@
 
         <div class="container">
             <h4>{{detail.title}}</h4>
-                <img id="moviePoster" :src="`http://image.tmdb.org/t/p/w185_and_h278_bestv2/${detail.poster_path}`" alt="Movie Poster">
+                <img id="moviePoster" :src="`http://image.tmdb.org/t/p/w185_and_h278_bestv2/${detail.posterPath}`" alt="Movie Poster">
         </div>
         <div id="description">
             <h4>Overview:</h4>
                 {{detail.overview}}         
         </div>
-        <p><strong>Seats: 50/50</strong></p>
+        <p><strong>Seats: {{detail.seats}}/50</strong></p>
 
     </div>
 </template>
@@ -19,9 +19,6 @@ export default {
     name: 'MovieCard',
     props:{
         detail:{}
-    },
-    mounted(){
-        console.log(this.detail);
     }
 }
 </script>

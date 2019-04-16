@@ -7,7 +7,7 @@
       <button v-on:click="logout()">Logout</button>
     </header>
     
-    <CardList v-bind:movies="{movieAPIResults}"></CardList>
+    <CardList v-bind:movies="{moviesFromFirebase}"></CardList>
   </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
   data(){
     return {
       userName: "",
-      movieAPIResults: []
+      movieAPIResults: [],
+      moviesFromFirebase: []
     }
   },
   methods:{
@@ -57,7 +58,7 @@ export default {
     //get list of current movies from API
     var request = new XMLHttpRequest();
 
-    request.open('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=1cca25cee708bb87ee10989f931b5f89&primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-04-30&language=en&sort_by=popularity.desc');
+    request.open('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=1cca25cee708bb87ee10989f931b5f89&region=US&primary_release_date.gte=2019-04-01&primary_release_date.lte=2019-04-30&language=en&sort_by=popularity.desc');
   
     request.onload = function() {
 
@@ -87,6 +88,30 @@ export default {
           });
     });
 
+    //Grabs all movie data from database and populates page
+    database.ref('/movies/').once('value').then(function(snapshot){
+      snapshot.forEach(movie => {
+        //console.log(movie.val());
+        self.moviesFromFirebase.push(movie.val());
+      });
+
+      //console.log(self.moviesFromFirebase);
+    });
+
+    //Set listener so that when data changes, page updates
+    database.ref('/movies/').on("child_changed",function(snapshot){
+      console.log(snapshot.val());
+
+      self.moviesFromFirebase.forEach(movie => {
+        if(movie.id == snapshot.val().id){
+          movie.seats = snapshot.val().seats;
+        }
+      });
+
+      console.log(self.moviesFromFirebase);
+    });
+
+    //console.log("moviesFromFirebase: " + self.moviesFromFirebase);
   }
 
 }
