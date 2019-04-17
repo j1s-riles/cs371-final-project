@@ -34,6 +34,7 @@ export default {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 
 /* Add some padding inside the card container */
@@ -48,6 +49,7 @@ export default {
 
 #description {
     text-align: left;
+    padding: 10px;
 }
 </style>
 

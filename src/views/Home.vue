@@ -1,9 +1,16 @@
 <template>
   <div class="home">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32">
     <header>
+      <img alt="logo" src="../assets/logo.gif.gif">
       <h2>Welcome, {{userName}}</h2>
+<<<<<<< HEAD
       <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
       <router-link to="/profile" tag="button">Profile</router-link>
+=======
+      
+      <button>Profile</button>
+>>>>>>> 352c81cbdf89c6421ba7568e0e33153bb382a751
       <button v-on:click="logout()">Logout</button>
     </header>
     
@@ -100,7 +107,7 @@ export default {
 
     //Set listener so that when data changes, page updates
     database.ref('/movies/').on("child_changed",function(snapshot){
-      console.log(snapshot.val());
+      //console.log(snapshot.val());
 
       self.moviesFromFirebase.forEach(movie => {
         if(movie.id == snapshot.val().id){
@@ -108,7 +115,7 @@ export default {
         }
       });
 
-      console.log(self.moviesFromFirebase);
+      //console.log(self.moviesFromFirebase);
     });
 
     //console.log("moviesFromFirebase: " + self.moviesFromFirebase);
@@ -116,3 +123,10 @@ export default {
 
 }
 </script>
+
+<style>
+body {
+background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(219,249,255,1) 38%, rgba(208,247,255,1) 75%, rgba(163,239,255,1) 100%);
+}
+</style>
