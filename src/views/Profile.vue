@@ -13,8 +13,8 @@
             </tr>
             <template v-for="(item,key,index) in reservations">
                 <tr v-bind:key="key">
-                    <td>{{item}}</td>
-                    <td><button v-on:click="cancelReservation(key, item)">X</button></td>
+                    <td>{{reservationTitles[index]}}</td>
+                    <td><button v-on:click="cancelReservation(key, item, index)">X</button></td>
                 </tr>
             </template>
         </table>
@@ -31,7 +31,9 @@ export default {
             name: "",
             email: "",
             newEmail: "",
-            reservations: []
+            reservations: [],
+            reservationTitles: [],
+            reservationIDs: []
         }
     },
     methods:{
@@ -47,7 +49,7 @@ export default {
                 alert(error);
             });
         },
-        cancelReservation(key, movie){
+        cancelReservation(key, movie, index){
             var database = firebase.database();
             var user = firebase.auth().currentUser;
             var self = this;
@@ -56,8 +58,10 @@ export default {
                 database.ref('/movies/' + movie + '/seats').transaction(function(currentSeats){
                     return currentSeats + 1;
                 });
+                self.reservationTitles.splice(index,1);
+                console.log(index);
             });
-            console.log(movie);
+            console.log(self.reservationTitles);
         }
     },
     created(){
@@ -69,8 +73,22 @@ export default {
             self.name = snapshot.val().name;
             self.email = snapshot.val().email;
             self.reservations = snapshot.val().reservedMovies;
-            
+            self.reservationIDs = [];
+            for(let id in snapshot.val().reservedMovies){
+                self.reservationIDs.push(snapshot.val().reservedMovies[id]);
+            }
+            database.ref('/movies').once('value').then(function(snapshot){
+                self.reservationIDs.forEach(id =>{
+                    //console.log(snapshot.val()[id].title)
+                    self.reservationTitles.push(snapshot.val()[id].title);
+                    
+                });
+            });
         });
+        // console.log(self.reservations);
+
+        
+        
     }
 }
 </script>
