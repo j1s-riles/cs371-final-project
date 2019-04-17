@@ -32,17 +32,20 @@ export default {
             let self = this;
 
             var database = firebase.database();
-            //console.log(id);
             var user = firebase.auth().currentUser;
 
             database.ref('/users/' + user.uid).once('value').then(function(snapshot){
                 if(!snapshot.val().reservedMovies){
                    // database.ref('/users/'+user.uid+).update({'reservedMovies':[movie.id]});
                     database.ref('/users/' + user.uid + '/reservedMovies').push(movie.id);
+
+                    //subtract a seat from the movies table
+                    database.ref('/movies/' + movie.id + '/seats').set(movie.seats - 1);
+                    console.log("movie added");
+                    alert("You have reserved a seat for " + movie.title);
                 }else{
 
                     for(let entry in snapshot.val().reservedMovies){
-                        //console.log(snapshot.val().reservedMovies[entry]);
                         if(snapshot.val().reservedMovies[entry] === movie.id){
                             alert("You have already reserved a spot for this movie!");
                             return;
@@ -53,7 +56,7 @@ export default {
                     
                     //subtract a seat from the movies table
                     database.ref('/movies/' + movie.id + '/seats').set(movie.seats - 1);
-
+                    console.log("movie added");
                     alert("You have reserved a seat for " + movie.title);
 
                 }

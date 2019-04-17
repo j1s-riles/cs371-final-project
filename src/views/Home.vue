@@ -102,7 +102,7 @@ export default {
 
     //Set listener so that when data changes, page updates
     database.ref('/movies/').on("child_changed",function(snapshot){
-      console.log(snapshot.val());
+      //console.log(snapshot.val());
 
       self.moviesFromFirebase.forEach(movie => {
         if(movie.id == snapshot.val().id){
@@ -110,7 +110,7 @@ export default {
         }
       });
 
-      console.log(self.moviesFromFirebase);
+      //console.log(self.moviesFromFirebase);
     });
 
     //console.log("moviesFromFirebase: " + self.moviesFromFirebase);
