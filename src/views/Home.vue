@@ -4,8 +4,7 @@
     <header>
       <img alt="logo" src="../assets/logo.gif.gif">
       <h2>Welcome, {{userName}}</h2>
-      
-      <button>Profile</button>
+      <router-link to="/profile" tag="button">Profile</router-link>
       <button v-on:click="logout()">Logout</button>
     </header>
     
