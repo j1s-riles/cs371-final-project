@@ -1,5 +1,6 @@
 <template>
     <div id="top">
+        <img alt="logo" src="../assets/logo.gif.gif">
         <h1>Sign Up</h1>
         <div id="loginForm">
             <label for="emailField">Email:</label>
