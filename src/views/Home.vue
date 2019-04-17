@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32">
     <header>
+      <img alt="logo" src="../assets/logo.gif.gif">
       <h2>Welcome, {{userName}}</h2>
-      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+      
       <button>Profile</button>
       <button v-on:click="logout()">Logout</button>
     </header>
@@ -116,3 +118,10 @@ export default {
 
 }
 </script>
+
+<style>
+body {
+background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(219,249,255,1) 38%, rgba(208,247,255,1) 75%, rgba(163,239,255,1) 100%);
+}
+</style>

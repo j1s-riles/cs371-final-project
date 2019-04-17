@@ -48,6 +48,7 @@ export default {
 
 #description {
     text-align: left;
+    padding: 10px;
 }
 </style>
 
