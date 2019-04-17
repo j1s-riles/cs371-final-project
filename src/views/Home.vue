@@ -4,13 +4,7 @@
     <header>
       <img alt="logo" src="../assets/logo.gif.gif">
       <h2>Welcome, {{userName}}</h2>
-<<<<<<< HEAD
-      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
       <router-link to="/profile" tag="button">Profile</router-link>
-=======
-      
-      <button>Profile</button>
->>>>>>> 352c81cbdf89c6421ba7568e0e33153bb382a751
       <button v-on:click="logout()">Logout</button>
     </header>
     
